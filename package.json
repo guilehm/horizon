@@ -18,5 +18,14 @@
   "bugs": {
     "url": "https://github.com/Guilehm/horizon/issues"
   },
-  "homepage": "https://github.com/Guilehm/horizon#readme"
+  "homepage": "https://github.com/Guilehm/horizon#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "helmet": "^3.18.0",
+    "morgan": "^1.9.1",
+    "request": "^2.88.0"
+  },
+  "devDependencies": {
+    "nodemon": "^1.19.1"
+  }
 }
