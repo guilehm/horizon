@@ -8,9 +8,9 @@ const app = new express()
 app.use(morgan('short'))
 app.use(helmet())
 
-const getUserController = require('./controllers/get-user-id-controller')
+const getUserStatsController = require('./controllers/get-user-stats-controller')
 
-app.get('/', getUserController)
+app.get('/', getUserStatsController)
 
 const PORT = process.env.PORT || 4000
 
