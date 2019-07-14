@@ -1,4 +1,4 @@
-# Bloodborne
+# Horizon
 
 This project is a microservice part of [Fortnite Api](https://github.com/Guilehm/fortnite-api-microservices).
 
