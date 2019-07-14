@@ -9,8 +9,10 @@ app.use(morgan('short'))
 app.use(helmet())
 
 const getUserStatsController = require('./controllers/get-user-stats-controller')
+const getUserStatsOverallController = require('./controllers/get-user-stats-overall-controller')
 
 app.get('/', getUserStatsController)
+app.get('/overall/', getUserStatsOverallController)
 
 const PORT = process.env.PORT || 4000
 
