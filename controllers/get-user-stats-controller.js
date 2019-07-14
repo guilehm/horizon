@@ -29,8 +29,8 @@ module.exports = (req, res) => {
         res.end(JSON.stringify(response))
     }
 
-    if (!token) handleError(500, 'missing token')
-    if (!uid) handleError(400, 'uid is required')
+    if (!token) return handleError(500, 'missing token')
+    if (!uid) return handleError(400, 'uid is required')
 
     let options = {
         url: endpoint,
