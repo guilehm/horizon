@@ -3,7 +3,13 @@ const request = require('request')
 module.exports = (req, res) => {
     const endpoint = 'https://fortnite-api.theapinetwork.com/prod09/users/public/br_stats_v2'
     let uid = req.query.uid
+    let mode = req.query.mode
     let token = process.env.TOKEN
+
+    let validateMode = mode => {
+        let modes = ['defaultModes', 'ltmModes', 'largeTeamModes']
+        return (modes.indexOf(mode) > -1)
+    }
 
     let handleError = (status, message) => {
         res.status(status).end(JSON.stringify({
@@ -13,12 +19,18 @@ module.exports = (req, res) => {
     }
 
     let handleSuccess = data => {
-        data.data.success = true
-        res.end(JSON.stringify(data.data))
+        if (mode && validateMode(mode)) {
+            data = data.overallData[mode]
+        } else {
+            data = data.overallData
+        }
+        data.success = true
+        res.end(JSON.stringify(data))
     }
 
     if (!token) handleError(500, 'missing token')
     if (!uid) handleError(400, 'uid is required')
+
 
     let options = {
         url: endpoint,
