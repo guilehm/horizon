@@ -14,8 +14,8 @@ module.exports = (req, res) => {
     }
 
     let handleSuccess = data => {
-        data.success = true
-        res.end(JSON.stringify(data))
+        data.data.success = true
+        res.end(JSON.stringify(data.data))
     }
 
     if (!token) handleError(500, 'missing token')
