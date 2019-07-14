@@ -20,12 +20,13 @@ module.exports = (req, res) => {
 
     let handleSuccess = data => {
         if (mode && validateMode(mode)) {
-            data = data.overallData[mode]
+            response = data.overallData[mode]
         } else {
-            data = data.overallData
+            response = data.overallData
         }
-        data.success = true
-        res.end(JSON.stringify(data))
+        response.success = true
+        response.epicName = data.epicName
+        res.end(JSON.stringify(response))
     }
 
     if (!token) handleError(500, 'missing token')
