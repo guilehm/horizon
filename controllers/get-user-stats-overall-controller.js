@@ -32,7 +32,6 @@ module.exports = (req, res) => {
     if (!token) return handleError(500, 'missing token')
     if (!uid) return handleError(400, 'uid is required')
 
-
     let options = {
         url: endpoint,
         headers: { Authorization: token },
@@ -43,7 +42,7 @@ module.exports = (req, res) => {
         if (error) handleError(500, error)
         data = JSON.parse(body)
         if (data.success === false) {
-            handleError(200, data.errorMessage)
+            return handleError(200, data.errorMessage)
         }
         return handleSuccess(data)
     })
