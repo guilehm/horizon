@@ -2,6 +2,7 @@ const mongoose = require('mongoose')
 
 const StatsV2Schema = new mongoose.Schema({
     epicName: String,
+    uid: String,
     keyboardmouse: Object,
     gamepad: Object,
     touch: Object,
