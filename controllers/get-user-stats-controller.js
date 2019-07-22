@@ -1,4 +1,5 @@
 const request = require('request')
+const StatsV2 = require('../database/models/stats-v2')
 
 module.exports = (req, res) => {
     const endpoint = 'https://fortnite-api.theapinetwork.com/prod09/users/public/br_stats_v2'
@@ -18,6 +19,13 @@ module.exports = (req, res) => {
         }))
     }
 
+    let saveAtDatabase = data => {
+        StatsV2.findOneAndUpdate({ epicName: data.epicName },
+            { ...data }, {
+                upsert: true, new: true, runValidators: true, rawResult: true
+            }).then(() => console.log('Stats updated!')).catch((e) => console.log(e))
+    }
+
     let handleSuccess = data => {
         if (platform && validatePlatform(platform)) {
             response = data.data[platform]
@@ -26,6 +34,7 @@ module.exports = (req, res) => {
         }
         response.success = true
         response.epicName = data.epicName
+        saveAtDatabase(response)
         res.end(JSON.stringify(response))
     }
 
