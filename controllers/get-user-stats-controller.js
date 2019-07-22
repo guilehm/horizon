@@ -22,11 +22,20 @@ module.exports = (req, res) => {
         }))
     }
 
+    let makeLogMessage = stats => {
+        logger.info(`Success updating user: ${stats.value.epicName}`)
+    }
+
+    let makeErrorLogMessage = message => {
+        logger.error(`${message}`)
+    }
+
+
     let saveAtDatabase = data => {
         StatsV2.findOneAndUpdate({ epicName: data.epicName },
             { ...data }, {
                 upsert: true, new: true, runValidators: true, rawResult: true
-            }).then(() => console.log('Stats updated!')).catch((e) => console.log(e))
+            }).then(makeLogMessage, makeErrorLogMessage)
     }
 
     let handleSuccess = data => {
