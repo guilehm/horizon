@@ -1,11 +1,10 @@
 const mongoose = require('mongoose')
 
 const StatsV2Schema = new mongoose.Schema({
-    success: Boolean,
     epicName: String,
-    keyboardmouse: Number,
-    gamepad: String,
-    touch: String,
+    keyboardmouse: Object,
+    gamepad: Object,
+    touch: Object,
     dateAdded: {
         type: Date,
         default: Date.now,
