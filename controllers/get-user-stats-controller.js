@@ -1,5 +1,8 @@
 const request = require('request')
 const StatsV2 = require('../database/models/stats-v2')
+const nodeLogger = require('node-logger')
+
+const logger = nodeLogger.createLogger()
 
 module.exports = (req, res) => {
     const endpoint = 'https://fortnite-api.theapinetwork.com/prod09/users/public/br_stats_v2'
