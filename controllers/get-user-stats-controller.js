@@ -46,6 +46,7 @@ module.exports = (req, res) => {
         }
         response.success = true
         response.epicName = data.epicName
+        response.uid = uid,
         saveAtDatabase(response)
         res.end(JSON.stringify(response))
     }
